@@ -1,11 +1,23 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const morgan = require('morgan');
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+const app = express();
+
+app.use(morgan(function (tokens, req, res) {
+  return [
+    tokens.method(req, res),
+    tokens.url(req, res),
+    tokens.status(req, res),
+    tokens.res(req, res, 'content-length'), '-',
+    tokens['response-time'](req, res), 'ms'
+  ].join(' ')
+}));
+
+app.listen(3000, () => console.log('Example app listening on port 3000!'));
 
 app.get('/', function (req, res) {
     res.send('Hello World!')
-})
+});
 
 /*app.get('/', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
