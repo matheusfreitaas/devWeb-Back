@@ -1,0 +1,22 @@
+{
+  "name": "devweb-back",
+  "version": "1.0.0",
+  "description": "Projeto da disciplina de Desenvolvimento Web",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matheusfreitaas/devWeb-Back.git"
+  },
+  "author": "Matheus Barbosa de Freitas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matheusfreitaas/devWeb-Back/issues"
+  },
+  "homepage": "https://github.com/matheusfreitaas/devWeb-Back#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
