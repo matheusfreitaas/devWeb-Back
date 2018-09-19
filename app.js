@@ -14,13 +14,15 @@ app.use(morgan(function (tokens, req, res) {
   ].join(' ')
 }));
 
+app.use(express.static('public'));
+
 app.listen(3000, () => console.log('Example app listening on port 3000!'));
 
-app.get('/', function (req, res) {
+/*app.get('/', function (req, res) {
     res.send('Hello World!')
 });
 
-/*// faz o parse de requisições com o corpo do tipo application/x-www-form-urlencoded
+// faz o parse de requisições com o corpo do tipo application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // faz o parse de requisições com o corpo do tipo application/json
