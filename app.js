@@ -4,6 +4,8 @@ const morgan = require('morgan');
 
 const app = express();
 
+module.exports = app;
+
 app.use(morgan(function (tokens, req, res) {
   return [
     tokens.method(req, res),
@@ -17,6 +19,8 @@ app.use(morgan(function (tokens, req, res) {
 app.use(express.static('public'));
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'));
+
+// TODO: instalar supertest e swagger.
 
 /*app.get('/', function (req, res) {
     res.send('Hello World!')
