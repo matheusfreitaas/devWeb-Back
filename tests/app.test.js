@@ -1,6 +1,8 @@
-const app = require(../app);
+const app = require('../app');
 const request = require('supertest');
 
+
+/* example
 request(app)
   .get('/user')
   .expect('Content-Type', /json/)
@@ -9,3 +11,4 @@ request(app)
   .end(function(err, res) {
     if (err) throw err;
   });
+*/

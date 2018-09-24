@@ -1,10 +1,27 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const swaggerJSDoc = require('swagger-jsdoc');
+const administrator = require('./administrator');
+const discipline = require('./discipline');
+const professor = require('./professor');
+const student = require('./student');
 
 const app = express();
 
-module.exports = app;
+/* 
+  Perguntar a gaudêncio como funciona o path(swagger). 
+  Perguntar da estrutura de pastas e permissões(admin adiciona o resto.).
+  Utilizar coisas definidas nesse exemplo: 
+  https://medium.com/@tkssharma/swagger-with-existing-node-app-for-api-definition-9e0bd9fdd2af
+*/ 
+
+app.use('/administrator', administrator);
+app.use('/discipline', discipline);
+app.use('/professor', professor);
+app.use('/student', student);
+app.use(express.static('public'));
+app.listen(3000, () => console.log('Example app listening on port 3000!'));
 
 app.use(morgan(function (tokens, req, res) {
   return [
@@ -16,14 +33,35 @@ app.use(morgan(function (tokens, req, res) {
   ].join(' ')
 }));
 
-app.use(express.static('public'));
+// swagger definition
+const swaggerDefinition = {
+  info: {
+    title: 'DevWeb app.',
+    version: '1.0.0',
+    description: 'This is a api for discipline and professor avaliation',
+  },
+  host: 'localhost:3000',
+  basePath: '/',
+};
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'));
+// options for the swagger docs
+const options = {
+  // import swaggerDefinitions
+  swaggerDefinition: swaggerDefinition,
+  // path to the API docs
+  apis: ['./**/routes/*.js','routes.js'],// pass all in array 
+  };
 
-/*app.get('/', function (req, res) {
-    res.send('Hello World!')
-});
+// initialize swagger-jsdoc
+const swaggerSpec = swaggerJSDoc(options);
 
+module.exports = app;
+
+/* server swagger
+app.get('/swagger.json', function(req, res) {
+     res.setHeader('Content-Type', 'application/json');   res.send(swaggerSpec); 
+    });
+ 
 // faz o parse de requisições com o corpo do tipo application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
