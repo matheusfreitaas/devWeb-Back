@@ -2,11 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const swaggerJSDoc = require('swagger-jsdoc');
-/*const administrator = require('./administrator');
-const discipline = require('./discipline');
-const professor = require('./professor');
-const student = require('./student');
-*/
+const cache = require('memory-cache');
+
+const administrator = require('./administrator/administrator');
+const discipline = require('./course/course');
+const professor = require('./professor/professor');
+const student = require('./student/student');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -15,17 +17,14 @@ app.listen(PORT, () => {
 });
 
 /* 
-  Perguntar a gaudêncio como funciona o path(swagger). 
-  Perguntar da estrutura de pastas e permissões(admin adiciona o resto.).
-  Utilizar coisas definidas nesse exemplo: 
+  Utilizar coisas definidas nesse exemplo(no swagger): 
   https://medium.com/@tkssharma/swagger-with-existing-node-app-for-api-definition-9e0bd9fdd2af
 */ 
 
-/*app.use('/administrator', administrator);
-app.use('/discipline', discipline);
+app.use('/administrator', administrator);
+app.use('/course', course);
 app.use('/professor', professor);
 app.use('/student', student);
-*/
 app.use(express.static('public'));
 
 app.use(morgan(function (tokens, req, res) {
@@ -43,7 +42,7 @@ const swaggerDefinition = {
   info: {
     title: 'DevWeb app.',
     version: '1.0.0',
-    description: 'This is a api for discipline and professor avaliation',
+    description: 'This is a api for course and professor avaliation',
   },
   host: 'localhost:3000',
   basePath: '/',
@@ -66,7 +65,8 @@ module.exports = app;
 app.get('/swagger.json', function(req, res) {
      res.setHeader('Content-Type', 'application/json');   res.send(swaggerSpec); 
     });
- 
+*/
+
 // faz o parse de requisições com o corpo do tipo application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -81,4 +81,4 @@ app.use(function (req, res, next) {
 app.post('/', function (req, res) {
   // aqui estamos devolvendo ao cliente o corpo da requisição POST realizada pelo mesmo.
   res.end(JSON.stringify(req.body, null, 2))
-}); */
+}); 
