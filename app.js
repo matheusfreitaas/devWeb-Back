@@ -2,12 +2,17 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const swaggerJSDoc = require('swagger-jsdoc');
-const administrator = require('./administrator');
+/*const administrator = require('./administrator');
 const discipline = require('./discipline');
 const professor = require('./professor');
 const student = require('./student');
-
+*/
 const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
+});
 
 /* 
   Perguntar a gaudêncio como funciona o path(swagger). 
@@ -16,12 +21,12 @@ const app = express();
   https://medium.com/@tkssharma/swagger-with-existing-node-app-for-api-definition-9e0bd9fdd2af
 */ 
 
-app.use('/administrator', administrator);
+/*app.use('/administrator', administrator);
 app.use('/discipline', discipline);
 app.use('/professor', professor);
 app.use('/student', student);
+*/
 app.use(express.static('public'));
-app.listen(3000, () => console.log('Example app listening on port 3000!'));
 
 app.use(morgan(function (tokens, req, res) {
   return [

@@ -1618,6 +1618,10 @@ media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
 
+memory-cache@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/memory-cache/-/memory-cache-0.2.0.tgz#7890b01d52c00c8ebc9d533e1f8eb17e3034871a"
+
 memory-cache@~0.1.5:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/memory-cache/-/memory-cache-0.1.6.tgz#2ed9933ed7a8c718249be7366f7ca8749acf8a24"
