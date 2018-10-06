@@ -3,9 +3,12 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const swaggerJSDoc = require('swagger-jsdoc');
 const cache = require('memory-cache');
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/test');
 
 const administrator = require('./administrator/administrator');
-const discipline = require('./course/course');
+const course = require('./course/course');
 const professor = require('./professor/professor');
 const student = require('./student/student');
 
@@ -15,11 +18,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
-
-/* 
-  Utilizar coisas definidas nesse exemplo(no swagger): 
-  https://medium.com/@tkssharma/swagger-with-existing-node-app-for-api-definition-9e0bd9fdd2af
-*/ 
 
 app.use('/administrator', administrator);
 app.use('/course', course);
@@ -59,14 +57,6 @@ const options = {
 // initialize swagger-jsdoc
 const swaggerSpec = swaggerJSDoc(options);
 
-module.exports = app;
-
-/* server swagger
-app.get('/swagger.json', function(req, res) {
-     res.setHeader('Content-Type', 'application/json');   res.send(swaggerSpec); 
-    });
-*/
-
 // faz o parse de requisições com o corpo do tipo application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -81,4 +71,20 @@ app.use(function (req, res, next) {
 app.post('/', function (req, res) {
   // aqui estamos devolvendo ao cliente o corpo da requisição POST realizada pelo mesmo.
   res.end(JSON.stringify(req.body, null, 2))
-}); 
+});
+
+/* 
+  Utilizar coisas definidas nesse exemplo(no swagger): 
+  https://medium.com/@tkssharma/swagger-with-existing-node-app-for-api-definition-9e0bd9fdd2af
+*/ 
+
+/* server swagger
+app.get('/swagger.json', function(req, res) {
+     res.setHeader('Content-Type', 'application/json');   res.send(swaggerSpec); 
+    });
+*/
+
+app.get('/', function(req,res){
+  res.send('hello world!')
+});
+module.exports = app;
