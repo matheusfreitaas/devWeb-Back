@@ -1,13 +1,13 @@
 const express = require('express');
-const router = express.Router;
-const admin = require('./administrator');
+const router = express.Router();
+const adminService = require('./administrator');
 
-router.get('/me', admin.get);
+router.get('/:id', adminService.getAdmin);
 
-router.post('/register', admin.register);
+router.post('/', adminService.createAdmin);
 
-router.post('/login', admin.login);
+router.put('/:id/update', adminService.updateAdmin);
 
-router.delete('/delete', admin.delete);
+router.delete('/:id/delete', adminService.deleteAdmin);
 
 module.exports = router;

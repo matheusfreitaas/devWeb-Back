@@ -1,25 +1,22 @@
-const moongose = require('mongoose'); 
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const adminSchema = Schema(
-   {
-         name: {
+const adminSchema = new Schema({
+      name: {
          type: String,
-         required: [true, 'O administrador precisa de um nome.'],
-         unique: true
+         required: [true, "Um administrador precisa de um nome."]
       },
 
       email: {
          type: String,
-         required: [true, 'O administrador precisa de um email.'],
+         required: [true, "Um administrador precisa de um email."],
          unique: true
       },
-      
+
       password: {
          type: String,
-         required: [true, 'Toda conta precisa de uma senha.']
-      },
-});
+         required: [true, "Um administrador precisa de uma senha."]
+      }
+   });
 
-const administrator = mongoose.model('administrator', adminSchema);
-module.exports = administrator;  
+module.exports = mongoose.model('Admin', adminSchema)

@@ -1,31 +1,23 @@
 {
-  "name": "devweb-back",
+  "name": "myapp",
   "version": "1.0.0",
-  "description": "Projeto da disciplina de Desenvolvimento Web",
+  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/matheusfreitaas/devWeb-Back.git"
-  },
   "author": "Matheus Barbosa de Freitas",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/matheusfreitaas/devWeb-Back/issues"
-  },
-  "homepage": "https://github.com/matheusfreitaas/devWeb-Back#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "memory-cache": "^0.2.0",
-    "mongoose": "^5.2.17",
+    "mongoose": "^5.3.2",
     "morgan": "^1.9.1",
-    "swagger": "^0.7.5",
     "swagger-jsdoc": "^3.2.3"
   },
   "devDependencies": {
+    "nodemon": "^1.18.4",
     "supertest": "^3.3.0"
   }
 }
