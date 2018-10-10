@@ -9,7 +9,7 @@ exports.getAdmin = function (req, res, next) {
             res.json(admin);
         } 
       
-    })
+    });
 };
 
 exports.createAdmin = function (req, res, next) {
