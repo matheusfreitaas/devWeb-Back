@@ -39,3 +39,14 @@ exports.updateCourse = function(req, res, next){
       }
    });
 };
+
+exports.deleteCourse = function(req, res, next){
+   Course.findByIdAndRemove(req.params.id, function(err, course){
+      if (err){
+         res.status(400);
+         res.send('Ocorreu um erro.');
+      }else{
+         res.json('Curso removido com sucesso.');
+      }
+   });
+};

@@ -5,7 +5,6 @@ const courseSchema = new Schema({
    name: {
       type: String,
       required: [true, "Uma disciplina precisa de um nome."],
-      unique: true
    },
 
    class: {
