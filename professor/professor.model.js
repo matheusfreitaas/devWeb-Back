@@ -8,11 +8,6 @@ const profSchema = new Schema({
       unique: true
    },
 
-   course: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Course'
-   }],
-
    email: {
       type: String,
       required: [true, "Um professor precisa de um email."],
