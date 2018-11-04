@@ -22,11 +22,13 @@ const admin = require('./administrator/administrator.routes');
 const student = require('./student/student.routes');
 const professor = require('./professor/professor.routes');
 const course = require('./course/course.routes');
+const question = require('./question/question.routes');
 
 app.use('/administrator', admin);
 app.use('/student', student);
 app.use('/professor', professor);
 app.use('/course', course);
+app.use('/question', question);
 
 app.use(morgan(function (tokens, req, res) {
    return [

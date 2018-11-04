@@ -10,14 +10,18 @@ const courseSchema = new Schema({
    class: {
       type: Number,
          required: [true, "Uma disciplina precisa de uma turma."],
-         unique: true
    },
 
    professor: {
       type: Schema.Types.ObjectId,
       ref: 'Professor',
       required: [true, "Uma disciplina precisa de um professor."]
-   }
+   },
+
+   questions: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Question',
+   }]
 });
 
 module.exports = mongoose.model('Course', courseSchema);
