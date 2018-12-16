@@ -39,3 +39,12 @@ exports.deleteQuestion = (req, res) => {
    })
 };
 
+exports.getAllQuestions = (req, res) => {
+   Question.find({}, (err, questions) => {
+      if(err) {
+         return res.status(400).send('Ocorreu um erro.');
+      }
+      res.json(questions);
+   })
+};
+

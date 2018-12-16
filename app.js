@@ -5,10 +5,12 @@ const path = require('path');
 const swaggerJSDoc = require('swagger-jsdoc');
 const cache = require('memory-cache');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));

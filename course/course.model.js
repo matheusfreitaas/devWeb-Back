@@ -9,7 +9,7 @@ const courseSchema = new Schema({
 
    class: {
       type: Number,
-         required: [true, "Uma disciplina precisa de uma turma."],
+      required: [true, "Uma disciplina precisa de uma turma."],
    },
 
    professor: {

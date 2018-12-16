@@ -50,3 +50,12 @@ exports.deleteCourse = function(req, res, next){
       }
    });
 };
+
+exports.getAllCourses = (req, res) => {
+   Course.find({}, (err, courses) => {
+      if(err) {
+         return res.status(400).send('Ocorreu um erro.');
+      }
+      res.json(courses);
+   })
+};
