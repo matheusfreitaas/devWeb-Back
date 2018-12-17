@@ -1,4 +1,6 @@
 const Student = require('./student.model');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 exports.getStudent = function(req, res, next){
    Student.findById(req.params.id, function(err, student){
@@ -51,3 +53,32 @@ exports.deleteStudent = function(req, res, next){
       }
    });
 };
+
+exports.login = async function(req,res){
+   Student.findOne({'email': req.body.email}).then( async(student) => {
+       bcrypt.compare(req.body.password,
+           student.password
+           );
+       if(!student){
+           return res.status(404).json({ error: "Usuário não existe*"});
+       }else{
+           // test a matching password
+           student.comparePassword(req.body.password, function(err, isMatch) {
+               if (err) throw err;
+               if(!isMatch){
+                   return res.status(400).json( {
+                           error: 'Email ou senha incorreta*'
+                   });
+               }else{
+                   let token = jwt.sign({id: student._id}, process.env.JWT_SECRET_KEY, {expiresIn: 86400});
+                   let data = {
+                       message: 'Usuário autenticado com sucesso',
+                       token: token,
+                       studentId: student._id,
+                   };
+                   return res.status(200).json(data);
+               }
+           });
+       }
+       });
+}
